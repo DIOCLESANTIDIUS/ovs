@@ -1,0 +1,9 @@
+{% extends "poll/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+  <h2>What's going on, {{request.user.last_name}} Click below <span class="caret"></span> To</h2>
+  <h3><a href="{% url 'position' %}"> Vote</a></h3>
+  <h3><a href="{% url 'result' %}">See Result</a></h3>
+{% endblock %}

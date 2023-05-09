@@ -1,0 +1,82 @@
+{% extends "poll/base.html" %}
+{% load static %}
+
+{% block title %}Online Voting System{% endblock %}
+
+{% block content %}
+<style>
+  .nav{
+    height:300vh;
+    position:absolute;
+    left:0px;
+    top:100px;
+    color: #fff;
+    width:143px;
+    padding-left: 0;
+    
+    background-color: grey;
+  }
+  uli,li{
+    text-decoration: none;
+    color: #fff;
+    /*border: 1px solid #000;*/
+    font-size: 26px;
+    list-style-type: none;
+  }
+  a{
+    color:#fff
+  }
+  a:hover{
+    text-decoration: none;
+    color:#fff;
+    font-variant: small-caps;
+  }
+  ul,small{
+    margin-left: -10px;
+  }
+  ul,li{
+    margin-left: -10px;
+  }
+</style>
+<div class="nav">
+  {% if request.user.is_authenticated and user.is_superuser %}
+  <ul>
+    <img src="{% static 'poll/default.jpg'%}" style="border-radius: 60px;" width="60px" height="60px"><br>
+    <small>{{user.first_name}} {{user.last_name}}</small>
+    <br>
+    
+         
+    <li><a  href="{% url 'admin:index' %}">Index page</a></li>
+    <li><a href="{% url 'home-page' %}">Dashboard</a></li>
+    <li><a href="{% url 'position' %}">Vote</a></li>
+    <li><a href="{% url 'result' %}">Result</a></li>
+  </ul>
+  {%else%}
+  <ul>
+    <img src="{% static 'poll/default.jpg'%}" style="border-radius: 60px;" width="60px" height="60px"><br>
+    <small>{{user.first_name}} {{user.last_name}}</small>
+    <br>
+    
+         
+    
+    <li><a href="{% url 'home-page' %}">Dashboard</a></li>
+    <li><a href="{% url 'position' %}">Vote</a></li>
+    <li><a href="{% url 'result' %}">Result</a></li>
+  </ul>
+  {% endif %}
+</div>
+
+<div class="jumbotron" style="margin-left: 20%;">
+ 
+  {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-success" role="alert">
+      {{ message }}
+    </div>
+    {% endfor %}
+  {% endif %}
+  <h1 >Welcome to DUCE Online Voting System</h1>
+  
+</div>
+
+{% endblock %}
